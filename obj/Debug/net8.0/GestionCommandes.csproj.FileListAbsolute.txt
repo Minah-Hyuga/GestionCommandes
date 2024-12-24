@@ -141,3 +141,4 @@ C:\Users\dell XPS\GestionCommandes\bin\Debug\net8.0\runtimes\win-x64\native\k5sp
 C:\Users\dell XPS\GestionCommandes\bin\Debug\net8.0\runtimes\win-x64\native\krb5_64.dll
 C:\Users\dell XPS\GestionCommandes\bin\Debug\net8.0\runtimes\win-x64\native\krbcc64.dll
 C:\Users\dell XPS\GestionCommandes\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Windows.Extensions.dll
+c:\Users\dell XPS\GestionCommandes\obj\Debug\net8.0\GestionCommandes.sourcelink.json
