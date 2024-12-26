@@ -20,14 +20,23 @@ namespace GestionCommandes.Services.Implementations
 
         public Client GetClientById(int id)
         {
-            return _context.Clients.Find(id);
+            return _context.Clients.FirstOrDefault(c => c.Id == id);
         }
+
 
         public void AddClient(Client client)
         {
-            _context.Clients.Add(client);
-            _context.SaveChanges();
+            try
+            {
+                _context.Clients.Add(client);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("Erreur lors de l'ajout du client.", ex);
+            }
         }
+
 
         public void UpdateClient(Client client)
         {

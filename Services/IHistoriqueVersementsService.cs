@@ -10,5 +10,9 @@ namespace GestionCommandes.Services
         void AddHistoriqueVersement(HistoriqueVersement historiqueVersement);
         void UpdateHistoriqueVersement(HistoriqueVersement historiqueVersement);
         void DeleteHistoriqueVersement(int id);
+        void AddHistoriqueVersements(HistoriqueVersement historiqueVersement);
+        string? GetHistoriqueVersementsById(int id);
+        void UpdateHistoriqueVersements(HistoriqueVersement historiqueVersement);
+        void DeleteHistoriqueVersements(int id);
     }
 }

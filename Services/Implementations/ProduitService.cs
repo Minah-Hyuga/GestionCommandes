@@ -48,5 +48,10 @@ namespace GestionCommandes.Services.Implementations
 
     public interface IProduitService
     {
+        void AddProduit(Produit produit);
+        void DeleteProduit(int id);
+        string? GetAllProduits();
+        string? GetProduitById(int id);
+        void UpdateProduit(Produit produit);
     }
 }
