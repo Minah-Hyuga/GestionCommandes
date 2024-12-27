@@ -2,36 +2,15 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using GestionCommandes.Models;
 
-namespace GestionCommandes.Adapters.Interfaces
+namespace GestionCommandes.Services.Implementations
 {
-    public interface ICommandeAdapter
+    public interface ICommandeService
     {
-        Commande ConvertToCommande(CommandeInputModel commandeInput);
-        CommandeOutputModel ConvertToCommandeOutput(Commande commande);
-        IEnumerable<CommandeOutputModel> ConvertToCommandeOutputList(IEnumerable<Commande> commandes);
-        Task<System.ComponentModel.DataAnnotations.ValidationResult> ValidateCommandeInputAsync(CommandeInputModel commandeInput);
+        Task<IEnumerable<Commande>> GetAllCommandesAsync();
+        Task<Commande?> GetCommandeByIdAsync(int id);
+        Task<ServiceResult<Commande>> AddCommandeAsync(Commande commande);
+        Task<ServiceResult<Commande>> UpdateCommandeAsync(Commande commande);
+        Task<ServiceResult<bool>> DeleteCommandeAsync(int id);
+        Task<bool> CommandeExistsAsync(int id);
     }
-
-    public class CommandeOutputModel
-    {
-        public int Id { get; set; }
-        public string NomClient { get; set; }
-        public DateTime DateCommande { get; set; }
-        public decimal Montant { get; set; }
-        public List<string> Produits { get; set; } = new List<string>();
-    }
-    public class ValidationResult
-    {
-        public bool IsValid { get; set; }
-        public List<string> Errors { get; set; } = new List<string>();
-    }
-
-    public class CommandeInputModel
-    {
-        public int ClientId { get; set; }
-        public DateTime DateCommande { get; set; }
-        public decimal Montant { get; set; }
-        public List<int> ProduitsIds { get; set; } = new List<int>();
-    }
-
 }
