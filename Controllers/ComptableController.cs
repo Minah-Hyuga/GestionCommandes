@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using GestionCommandes.Models;
-using GestionCommandes.Services;
+using GestionCommandes.Services.Interfaces;
+using GestionCommandes.Controllers.implementations;
 
 namespace GestionCommandes.Controllers
 {
@@ -13,54 +14,50 @@ namespace GestionCommandes.Controllers
             _comptableService = comptableService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var comptables = _comptableService.GetAllComptables();
+            var comptables = await _comptableService.GetAllComptablesAsync();
             return View(comptables);
         }
 
-        public IActionResult Create(Comptable comptable)
+        public async Task<IActionResult> Create(Comptable comptable)
         {
             if (ModelState.IsValid)
             {
-                _comptableService.AddComptable(comptable);
+                await _comptableService.AddComptableAsync(comptable);
                 return RedirectToAction(nameof(Index));
             }
             return View(comptable);
         }
 
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            var comptable = _comptableService.GetComptableById(id);
+            var comptable = await _comptableService.GetComptableByIdAsync(id);
             return View(comptable);
         }
 
         [HttpPost]
-        public IActionResult Edit(Comptable comptable)
+        public async Task<IActionResult> Edit(Comptable comptable)
         {
             if (ModelState.IsValid)
             {
-                _comptableService.UpdateComptable(comptable);
+                await _comptableService.UpdateComptableAsync(comptable);
                 return RedirectToAction(nameof(Index));
             }
             return View(comptable);
         }
 
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var comptable = _comptableService.GetComptableById(id);
+            var comptable = await _comptableService.GetComptableByIdAsync(id);
             return View(comptable);
         }
 
         [HttpPost, ActionName("Delete")]
-        public IActionResult DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            _comptableService.DeleteComptable(id);
+            await _comptableService.DeleteComptableAsync(id);
             return RedirectToAction(nameof(Index));
         }
-    }
-
-    internal interface IComptableController
-    {
     }
 }

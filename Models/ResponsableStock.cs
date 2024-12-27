@@ -8,9 +8,9 @@ namespace GestionCommandes.Models
     {
         [Key]
         public int RsId { get; set; }  
-        public string Nom { get; set; }
-        public string Prenom { get; set; }
-        public string Telephone { get; set; }
+        public required string Nom { get; set; }
+        public required string Prenom { get; set; }
+        public required string Telephone { get; set; }
         public List<Commande> CommandesPreparees { get; set; }  
 
         public ResponsableStock()

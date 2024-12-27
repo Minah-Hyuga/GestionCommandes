@@ -5,10 +5,10 @@ namespace GestionCommandes.Controllers.implementations
 {
     public interface ICommandeController
     {
-        IActionResult Index();
-        IActionResult Create(Commande commande);
-        IActionResult Edit(int id);
-        IActionResult Delete(int id);
-        IActionResult DeleteConfirmed(int id);
+        Task<IActionResult> Index();
+        Task<IActionResult> Create(Commande commande);
+        Task<IActionResult> Edit(int id);
+        Task<IActionResult> Delete(int id);
+        Task<IActionResult> DeleteConfirmed(int id);
     }
 }

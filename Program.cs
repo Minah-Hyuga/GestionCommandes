@@ -1,58 +1,45 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using GestionCommandes.Data;
-using GestionCommandes.Services;
-using GestionCommandes.Services.Implementations;
-using Pomelo.EntityFrameworkCore.MySql;
 using Microsoft.EntityFrameworkCore;
+using GestionCommandes.Data;
+using GestionCommandes.Services.Interfaces;
+using GestionCommandes.Services.Implementations;
+using GestionCommandes.Services;
+using GestionCommandes.Models;
 
-namespace GestionCommandes
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            // Création de l'hôte et exécution de l'application
-            CreateHostBuilder(args).Build().Run();
-        }
+var builder = WebApplication.CreateBuilder(args);
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    // Configuration de l'hôte web
-                    webBuilder.UseStartup<Startup>(); // Assurez-vous que vous avez un fichier Startup.cs
-                })
-                .ConfigureServices((context, services) =>
-                {
-                    // Configuration des services nécessaires à l'application
+// Services de base
+builder.Services.AddControllers();
+builder.Services.AddControllersWithViews();
 
-                    // Configuration de la base de données avec MySQL
-                    services.AddDbContext<ApplicationDbContext>(options =>
-                        options.UseMySql(
-                            context.Configuration.GetConnectionString("DefaultConnection"),
-                            ServerVersion.AutoDetect(context.Configuration.GetConnectionString("DefaultConnection"))
-                        ));
+// Base de données
+builder.Services.AddDbContext<GestionCommandesContext>(options =>
+    options.UseMySql(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))
+    ));
 
-                    // Enregistrement des services (Injection de dépendances)
-                    services.AddScoped<IClientService, ClientService>();
-                    services.AddScoped<ICommandeService, CommandeService>();
-                    services.AddScoped<IComptableService, ComptableService>();
-                    services.AddScoped<IProduitService, ProduitService>();
-                    services.AddScoped<IHistoriqueService, HistoriqueService>();
-                    services.AddScoped<ILivraisonService, LivraisonService>();
-                    services.AddScoped<IPaiementService, PaiementService>();
-                    services.AddScoped<IResponsableStockService, ResponsableStockService>();
-                    services.AddScoped<IRemiseService, RemiseService>();
-                    services.AddScoped<ILivreurService, LivreurService>();
-                    services.AddScoped<IHistoriqueVersementsService, HistoriqueVersementsService>();
+// Injection des services
+// builder.Services.AddScoped<IClientService, ClientService>();
+builder.Services.AddScoped<ICommandeService, CommandeService>();
+builder.Services.AddScoped<IComptableService, ComptableService>();
+builder.Services.AddScoped<IProduitService, ProduitService>();
+builder.Services.AddScoped<IHistoriqueService, HistoriqueService>();
+builder.Services.AddScoped<ILivraisonService, LivraisonService>();
+builder.Services.AddScoped<IPaiementService, PaiementService>();
+builder.Services.AddScoped<IResponsableStockService, ResponsableStockService>();
+builder.Services.AddScoped<IRemiseService, RemiseService>();
+builder.Services.AddScoped<ILivreurService, LivreurService>();
 
-                    // Ajout des contrôleurs et des vues
-                    services.AddControllersWithViews();
+var app = builder.Build();
 
-                    // Ajout de Razor Pages si nécessaire
-                    services.AddRazorPages();
-                });
-    }
-}
+// Configuration de l'application
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.Run();

@@ -5,10 +5,10 @@ namespace GestionCommandes.Models
     public class Client
     {
         public int Id { get; set; }
-        public string Nom { get; set; }
-        public string Prénom { get; set; }
-        public string Téléphone { get; set; }
-        public string Adresse { get; set; }
+        public required string Nom { get; set; } = string.Empty; // Ensure initialization
+        public required string Prenom { get; set; } = string.Empty; // Ensure initialization
+        public required string Telephone { get; set; } = string.Empty; // Ensure initialization
+        public required string Adresse { get; set; } = string.Empty; // Ensure initialization
         public decimal SoldeCompte { get; set; }
     }
 }

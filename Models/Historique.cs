@@ -6,7 +6,7 @@ namespace GestionCommandes.Models
     {
         public int Id { get; set; }
         public DateTime DateAction { get; set; }
-        public string Description { get; set; }
+        public required string Description { get; set; } = string.Empty; // Marked as required
         public int CommandeId { get; set; } // Clé étrangère vers Commande
     }
 }
