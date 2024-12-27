@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using GestionCommandes.Data;
-using GestionCommandes.Services.Interfaces;
 using GestionCommandes.Services.Implementations;
 using GestionCommandes.Services;
 using GestionCommandes.Models;
@@ -20,10 +19,10 @@ builder.Services.AddDbContext<GestionCommandesContext>(options =>
 
 // Injection des services
 // builder.Services.AddScoped<IClientService, ClientService>();
-builder.Services.AddScoped<ICommandeService, CommandeService>();
-builder.Services.AddScoped<IComptableService, ComptableService>();
+// builder.Services.AddScoped<ICommandeService, CommandeService>();
+// builder.Services.AddScoped<IComptableService, ComptableService>();
 builder.Services.AddScoped<IProduitService, ProduitService>();
-builder.Services.AddScoped<IHistoriqueService, HistoriqueService>();
+// builder.Services.AddScoped<IHistoriqueService, HistoriqueService>();
 builder.Services.AddScoped<ILivraisonService, LivraisonService>();
 builder.Services.AddScoped<IPaiementService, PaiementService>();
 builder.Services.AddScoped<IResponsableStockService, ResponsableStockService>();

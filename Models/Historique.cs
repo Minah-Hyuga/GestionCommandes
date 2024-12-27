@@ -2,11 +2,14 @@ using System;
 
 namespace GestionCommandes.Models
 {
-    public class Historique
+    public class HistoriquePaiement
     {
         public int Id { get; set; }
-        public DateTime DateAction { get; set; }
-        public required string Description { get; set; } = string.Empty; // Marked as required
-        public int CommandeId { get; set; } // Clé étrangère vers Commande
+        public int ClientId { get; set; }
+        public Client Client { get; set; } = new Client();
+        public string TypePaiement { get; set; } = string.Empty; // e.g., OM, Wave, Cheque
+        public string ReferencePaiement { get; set; } = string.Empty;
+        public decimal Montant { get; set; }
+        public DateTime DatePaiement { get; set; }
     }
 }

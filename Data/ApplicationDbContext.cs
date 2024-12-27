@@ -15,7 +15,7 @@ namespace GestionCommandes.Data
         public DbSet<Produit> Produits { get; set; }
         public DbSet<Paiement> Paiements { get; set; }
         public DbSet<Livraison> Livraisons { get; set; }
-        public DbSet<Historique> Historiques { get; set; }
+        // public DbSet<Historique> Historiques { get; set; }
         public DbSet<ResponsableStock> ResponsablesStock { get; set; }
         public DbSet<Remise> Remises { get; set; }
         public DbSet<HistoriqueVersement> HistoriqueVersements { get; set; }

@@ -1,0 +1,27 @@
+@model Client
+
+@{
+    ViewData["Title"] = "Modifier le Client";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label for="Nom">Nom</label>
+        <input type="text" id="Nom" name="Nom" class="form-control" value="@Model.Nom" />
+    </div>
+    <div class="form-group">
+        <label for="Prenom">Prenom</label>
+        <input type="text" id="Prenom" name="Prenom" class="form-control" value="@Model.Prenom" />
+    </div>
+    <div class="form-group">
+        <label for="Telephone">Telephone</label>
+        <input type="telephone" id="Telephone" name="Telephone" class="form-control" value="@Model.Telephone" />
+    </div>
+    <div class="form-group">
+        <label for="Addresse">Addresse</label>
+        <input type="text" id="Addresse" name="Addresse" class="form-control" value="@Model.Addresse" />
+    </div>
+    <button type="submit" class="btn btn-primary">Sauvegarder</button>
+</form>

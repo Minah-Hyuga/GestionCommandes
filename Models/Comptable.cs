@@ -20,5 +20,10 @@ namespace GestionCommandes.Models
         {
             throw new NotImplementedException();
         }
+
+        public static implicit operator Comptable(bool v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

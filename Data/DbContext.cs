@@ -15,7 +15,7 @@ namespace GestionCommandes.Models
         public DbSet<Paiement> Paiements { get; set; }
         public DbSet<Livraison> Livraisons { get; set; }
         public DbSet<HistoriqueVersement> HistoriquesVersements { get; set; }
-        public DbSet<Historique> Historiques { get; set; }
+        // public DbSet<Historique> Historiques { get; set; }
         public DbSet<Livreur> Livreurs { get; set; }
         public DbSet<Comptable> Comptables { get; set; }
         public DbSet<Remise> Remises { get; set; }

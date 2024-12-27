@@ -1,0 +1,30 @@
+@{
+    ViewData["Title"] = "Liste des Clients";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var client in Model)
+        {
+            <tr>
+                <td>@client.Id</td>
+                <td>@client.Nom</td>
+                <td>@client.Email</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Client", new { id = client.Id })" class="btn btn-primary">Modifier</a>
+                    <a href="@Url.Action("Delete", "Client", new { id = client.Id })" class="btn btn-danger">Supprimer</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
